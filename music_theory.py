@@ -1,5 +1,6 @@
 interval_names = ["P1", "M2", "M3", "P4", "P5", "M6", "M7", "8va"]
 doremi = ["Do", "Re", "Mi", "Fa", "So", "La", "Ti", "Do"]
+keys = ["C", "G", "D", "A", "E", "B", "F♯", "C♯", "A♭", "E♭", "B♭", "F"]
 
 scales = {
     "C": ("C", "D", "E", "F", "G", "A", "B", "C"),

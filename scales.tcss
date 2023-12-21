@@ -1,0 +1,11 @@
+Screen {
+    layout: grid;
+    grid-size: 8 1;
+}
+
+.box {
+    height: 3;
+    width: 7;
+    content-align: center middle;
+    border: heavy round white;
+}
