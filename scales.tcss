@@ -1,62 +1,93 @@
 #app-grid {
     layout: grid;
     grid-size: 2;  /* two columns */
-    grid-columns: 1fr 2fr;
+    grid-columns: 40 2fr;
     grid-rows: 1fr;
 }
 
-#left-pane > Static {
+#key-pane {
+    width: 100%;
+    height: 100%;
+    background: $panel;
+    border: dodgerblue;
+    padding: 2;
+    margin: 1;
+}
+
+#key-pane > Static {
     background: $boost;
     color: auto;
-    margin-bottom: 1;
+    margin: 1;
     padding: 1;
     content-align: center middle;
 }
 
-#left-pane {
+Select {
     width: 100%;
-    height: 100%;
-    row-span: 2;
-    background: $panel;
-    border: dodgerblue;
+    margin: 2;
 }
 
-#top-right {
+#scale-pane {
     height: 100%;
+    layout: grid;
+    grid-size: 8;
+    grid-columns: 1fr;
+    grid-rows: 1fr 1fr 2fr;
+    grid-gutter: 1;
     background: $panel;
     border: mediumvioletred;
+    padding: 2;
+    margin: 1;
 }
 
-#top-right > Static {
+#scale-pane > Static {
+    width: 7;
+    height: 3;
+    content-align: center middle;
+}
+
+#notes {
     width: 7;
     height: 3;
     content-align: center middle;
     border: heavy round white;
 }
 
-#bottom-right {
+#theory-pane {
     height: 100%;
     layout: grid;
-    grid-size: 3;
+    grid-size: 2;
     grid-columns: 1fr;
     grid-rows: 1fr;
     grid-gutter: 1;
     background: $panel;
     border: greenyellow;
+    padding: 1;
+    margin: 1;
 }
 
-#bottom-right-final {
-    column-span: 2;
-}
-
-#bottom-right > Static {
+#theory-pane > Static {
     height: 100%;
     background: $boost;
+    border: heavy round cyan;
 }
 
-.box {
+#variants-pane {
+    height: 100%;
+    layout: grid;
+    grid-size: 3;
+    grid-columns: 20 1fr 2fr;
+    grid-rows: 1fr;
+    grid-gutter: 1;
+    background: $panel;
+    border: greenyellow;
+    padding: 3;
+    margin: 1;
+}
+
+#variants-pane > Static {
     height: 3;
-    width: 7;
+    background: $boost;
+    border: heavy round cyan;
     content-align: center middle;
-    border: heavy round white;
 }
