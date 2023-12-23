@@ -1,7 +1,7 @@
 #app-grid {
     layout: grid;
     grid-size: 2;  /* two columns */
-    grid-columns: 40 2fr;
+    grid-columns: 2fr 2fr;
     grid-rows: 1fr;
 }
 
@@ -9,7 +9,7 @@
     width: 100%;
     height: 100%;
     background: $panel;
-    border: dodgerblue;
+    border: greenyellow;
     padding: 2;
     margin: 1;
 }
@@ -32,10 +32,10 @@ Select {
     layout: grid;
     grid-size: 8;
     grid-columns: 1fr;
-    grid-rows: 1fr 1fr 2fr;
+    grid-rows: 2fr;
     grid-gutter: 1;
     background: $panel;
-    border: mediumvioletred;
+    border: greenyellow;
     padding: 2;
     margin: 1;
 }
@@ -44,6 +44,8 @@ Select {
     width: 7;
     height: 3;
     content-align: center middle;
+    border: heavy round cyan;
+
 }
 
 #notes {
@@ -56,19 +58,20 @@ Select {
 #theory-pane {
     height: 100%;
     layout: grid;
-    grid-size: 2;
+    grid-size: 8;
     grid-columns: 1fr;
-    grid-rows: 1fr;
-    grid-gutter: 1;
+    grid-rows: 2fr 2fr 2fr;
     background: $panel;
     border: greenyellow;
-    padding: 1;
+    padding: 2;
     margin: 1;
 }
 
 #theory-pane > Static {
-    height: 100%;
+    width: 8;
+    height: 3;
     background: $boost;
+    content-align: center middle;
     border: heavy round cyan;
 }
 
