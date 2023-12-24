@@ -5,17 +5,24 @@ from textual.widgets import Header, Footer, Select, Label, Static
 from music_theory import interval_names, doremi, keys, scales
 
 # TODO:
-#   - top-right spacing
+#   - Blues & Triads set background for all notes black
+#   - Scales add number sharps & flats
+#   - Add 7 9 binding to select chord type:
+#   -   7th
+#   -   9th
 
 
 class ScalesApp(App):
     CSS_PATH = "scales.tcss"
     TITLE = "Musical Scales"
     BINDINGS = [
-        ("k", "key_change", "Change Key"),
+        ("b", "blues", "Blues"),
+        ("t", "triad", "Triad"),
         ("q", "quit", "Quit"),
     ]
     scale_key = "C"
+    triad = False
+    blues = False
 
     def compose(self) -> ComposeResult:
         yield Header()
@@ -25,20 +32,16 @@ class ScalesApp(App):
                 options = [(key, i) for i, key in enumerate(keys)]
                 yield Select(options, prompt="Select Key:")
             with Horizontal(id="scale-pane"):
-                # for interval in interval_names:
-                #     yield Static(f"{interval}")
-                # for tone in doremi:
-                #     yield Static(f"{tone}")
-                yield Static("C", id="note0", classes="notes")
-                yield Static("D", id="note1", classes="notes")
-                yield Static("E", id="note2", classes="notes")
-                yield Static("F", id="note3", classes="notes")
-                yield Static("G", id="note4", classes="notes")
-                yield Static("A", id="note5", classes="notes")
-                yield Static("B", id="note6", classes="notes")
-                yield Static("C", id="note7", classes="notes")
+                yield Static("C", id="note1", classes="notes")
+                yield Static("D", id="note2", classes="notes")
+                yield Static("E", id="note3", classes="notes")
+                yield Static("F", id="note4", classes="notes")
+                yield Static("G", id="note5", classes="notes")
+                yield Static("A", id="note6", classes="notes")
+                yield Static("B", id="note7", classes="notes")
+                yield Static("C", id="note8", classes="notes")
             with Container(id="theory-pane"):
-                for note_number in range(8):
+                for note_number in range(1,9):
                     yield Static(f"{note_number}")
                 for interval in interval_names:
                     yield Static(f"{interval}")
@@ -71,14 +74,14 @@ class ScalesApp(App):
         return flatted_note
 
     def update_note_widgets(self):
-        self.query_one("#note0").update(scales[self.scale_key][0])
-        self.query_one("#note1").update(scales[self.scale_key][1])
-        self.query_one("#note2").update(scales[self.scale_key][2])
-        self.query_one("#note3").update(scales[self.scale_key][3])
-        self.query_one("#note4").update(scales[self.scale_key][4])
-        self.query_one("#note5").update(scales[self.scale_key][5])
-        self.query_one("#note6").update(scales[self.scale_key][6])
-        self.query_one("#note7").update(scales[self.scale_key][7])
+        self.query_one("#note1").update(scales[self.scale_key][0])
+        self.query_one("#note2").update(scales[self.scale_key][1])
+        self.query_one("#note3").update(scales[self.scale_key][2])
+        self.query_one("#note4").update(scales[self.scale_key][3])
+        self.query_one("#note5").update(scales[self.scale_key][4])
+        self.query_one("#note6").update(scales[self.scale_key][5])
+        self.query_one("#note7").update(scales[self.scale_key][6])
+        self.query_one("#note8").update(scales[self.scale_key][7])
         self.query_one("#key").update(f"Key of: {self.scale_key}")
         mp1 = scales[self.scale_key][0]
         mp2 = scales[self.scale_key][1]
@@ -91,19 +94,35 @@ class ScalesApp(App):
         mp3 = scales[self.scale_key][3]
         mp4 = scales[self.scale_key][4]
         mp5 = self.flatten_note(scales[self.scale_key][6])  # flatten the 7th
-        #     mp5new = "♭" + mp5
         self.query_one("#minorpentatonic").update(f"{mp1} {mp2} {mp3} {mp4} {mp5}")
 
-    def action_key_change(self):
-        # increment the key and rollover at 12
-        current_key = (keys.index(self.scale_key) + 1) % 12
-        self.scale_key = keys[current_key]
-        self.update_note_widgets()
+    def action_triad(self):
+        self.triad = not self.triad
+        if self.triad:
+            self.query_one("#note1").styles.background = "green"
+            self.query_one("#note3").styles.background = "green"
+            self.query_one("#note5").styles.background = "green"
+        else:
+            self.query_one("#note1").styles.background = "black"
+            self.query_one("#note3").styles.background = "black"
+            self.query_one("#note5").styles.background = "black"
+
+    def action_blues(self):
+        self.blues = not self.blues
+        if self.blues:
+            self.query_one("#note1").styles.background = "blue"
+            self.query_one("#note4").styles.background = "blue"
+            self.query_one("#note5").styles.background = "blue"
+        else:
+            self.query_one("#note1").styles.background = "black"
+            self.query_one("#note4").styles.background = "black"
+            self.query_one("#note5").styles.background = "black"
 
     @on(Select.Changed)
     def select_changed(self, event: Select.Changed) -> None:
         self.scale_key = keys[event.value]
         self.update_note_widgets()
+
 
 
 if __name__ == "__main__":

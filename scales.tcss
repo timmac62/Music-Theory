@@ -8,7 +8,7 @@
 #key-pane {
     width: 100%;
     height: 100%;
-    background: $panel;
+    background: black;
     border: greenyellow;
     padding: 2;
     margin: 1;
@@ -34,7 +34,7 @@ Select {
     grid-columns: 1fr;
     grid-rows: 2fr;
     grid-gutter: 1;
-    background: $panel;
+    background: black;
     border: greenyellow;
     padding: 2;
     margin: 1;
@@ -45,14 +45,6 @@ Select {
     height: 3;
     content-align: center middle;
     border: heavy round cyan;
-
-}
-
-#notes {
-    width: 7;
-    height: 3;
-    content-align: center middle;
-    border: heavy round white;
 }
 
 #theory-pane {
@@ -61,7 +53,7 @@ Select {
     grid-size: 8;
     grid-columns: 1fr;
     grid-rows: 2fr 2fr 2fr;
-    background: $panel;
+    background: black;
     border: greenyellow;
     padding: 2;
     margin: 1;
@@ -79,10 +71,10 @@ Select {
     height: 100%;
     layout: grid;
     grid-size: 3;
-    grid-columns: 20 1fr 2fr;
+    grid-columns: 20 2fr 2fr;
     grid-rows: 1fr;
     grid-gutter: 1;
-    background: $panel;
+    background: black;
     border: greenyellow;
     padding: 3;
     margin: 1;
